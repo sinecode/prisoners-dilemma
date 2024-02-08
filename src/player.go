@@ -1,6 +1,8 @@
 package src
 
 type Player interface {
+	Name() string
+
 	// in is the channel from which the player take the opponent's move
 	// out is the channel to which the player send its move
 	// turns is the number of turns that the game will last
