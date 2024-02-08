@@ -16,6 +16,7 @@ var allStrategies = []src.Strategy{
 	&strategies.Random{},
 	&strategies.TitForTat{},
 	&strategies.GrimTrigger{},
+	&strategies.Pavlov{},
 }
 
 func printUsage() {
@@ -23,7 +24,7 @@ func printUsage() {
 	fmt.Println("")
 	fmt.Println("Choose from these strategies (case insensitive):")
 	for _, strategy := range allStrategies {
-		fmt.Printf("  * %-4s - %s\n", strategy.Name(), strategy.Description())
+		fmt.Printf("  * %-6s - %s\n", strategy.Name(), strategy.Description())
 	}
 }
 
@@ -72,11 +73,14 @@ func main() {
 
 	game := src.NewGame(strategy1, strategy2, turns)
 	result := game.Start()
-	fmt.Printf("%-4s scores: %d\n", strategy1.Name(), result.Strategy1Scores)
-	fmt.Printf("%-4s scores: %d\n", strategy2.Name(), result.Strategy2Scores)
+	fmt.Printf("%-6s moves:  %s\n", strategy1.Name(), result.ReadableStrategy1Moves())
+	fmt.Printf("%-6s moves:  %s\n", strategy2.Name(), result.ReadableStrategy2Moves())
 	fmt.Println("")
-	fmt.Printf("%-4s total score: %d\n", strategy1.Name(), result.Strategy1TotalScore)
-	fmt.Printf("%-4s total score: %d\n", strategy2.Name(), result.Strategy2TotalScore)
+	fmt.Printf("%-6s scores: %d\n", strategy1.Name(), result.Strategy1Scores)
+	fmt.Printf("%-6s scores: %d\n", strategy2.Name(), result.Strategy2Scores)
+	fmt.Println("")
+	fmt.Printf("%-6s total score: %d\n", strategy1.Name(), result.Strategy1TotalScore)
+	fmt.Printf("%-6s total score: %d\n", strategy2.Name(), result.Strategy2TotalScore)
 	fmt.Println("")
 	if result.Strategy1TotalScore > result.Strategy2TotalScore {
 		fmt.Printf("%s WIN!!\n", strategy1.Name())

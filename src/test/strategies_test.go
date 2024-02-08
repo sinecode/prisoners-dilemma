@@ -16,6 +16,7 @@ func TestStrategies(t *testing.T) {
 		{&strategies.AlwaysDefect{}},
 		{&strategies.TitForTat{}},
 		{&strategies.GrimTrigger{}},
+		{&strategies.Pavlov{}},
 	}
 	for _, test := range tests {
 		testStrategy(t, test.strategy)
