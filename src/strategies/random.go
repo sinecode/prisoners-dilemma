@@ -12,7 +12,7 @@ func (p *Random) Name() string {
 	return "RAND"
 }
 
-func (p *Random) Strategy() string {
+func (p *Random) Description() string {
 	return "Makes a random move."
 }
 

@@ -10,7 +10,7 @@ import (
 	"github.com/sinecode/prisoners-dilemma/src/strategies"
 )
 
-var allStrategies = []src.Player{
+var allStrategies = []src.Strategy{
 	&strategies.AlwaysDefect{},
 	&strategies.AlwaysCooperate{},
 	&strategies.Random{},
@@ -19,11 +19,11 @@ var allStrategies = []src.Player{
 }
 
 func printUsage() {
-	fmt.Println("Usage: prisoners game <turns> <player1> <player2>")
+	fmt.Println("Usage: prisoners game <turns> <strategy1> <strategy2>")
 	fmt.Println("")
-	fmt.Println("Choose from these players (case insensitive):")
+	fmt.Println("Choose from these strategies (case insensitive):")
 	for _, strategy := range allStrategies {
-		fmt.Println("  *", strategy.Name(), "-", strategy.Strategy())
+		fmt.Printf("  * %-4s - %s\n", strategy.Name(), strategy.Description())
 	}
 }
 
@@ -43,45 +43,45 @@ func main() {
 	}
 	argsIdx++
 
-	player1Name := strings.ToLower(os.Args[argsIdx])
-	var player1 src.Player
+	strategy1Name := strings.ToLower(os.Args[argsIdx])
+	var strategy1 src.Strategy
 	for _, strategy := range allStrategies {
-		if player1Name == strings.ToLower(strategy.Name()) {
-			player1 = strategy
+		if strategy1Name == strings.ToLower(strategy.Name()) {
+			strategy1 = strategy
 			break
 		}
 	}
-	if player1 == nil {
-		fmt.Println("Unknown <player1>:", player1Name)
+	if strategy1 == nil {
+		fmt.Println("Unknown <strategy1>:", strategy1Name)
 		return
 	}
 	argsIdx++
 
-	player2Name := strings.ToLower(os.Args[argsIdx])
-	var player2 src.Player
+	strategy2Name := strings.ToLower(os.Args[argsIdx])
+	var strategy2 src.Strategy
 	for _, strategy := range allStrategies {
-		if player2Name == strings.ToLower(strategy.Name()) {
-			player2 = strategy
+		if strategy2Name == strings.ToLower(strategy.Name()) {
+			strategy2 = strategy
 			break
 		}
 	}
-	if player2 == nil {
-		fmt.Println("Unknown <player2>:", player2Name)
+	if strategy2 == nil {
+		fmt.Println("Unknown <strategy2>:", strategy2Name)
 		return
 	}
 
-	game := src.NewGame(player1, player2, turns)
+	game := src.NewGame(strategy1, strategy2, turns)
 	result := game.Start()
-	fmt.Printf("%s scores: %d\n", player1.Name(), result.Player1Scores)
-	fmt.Printf("%s total score: %d\n", player1.Name(), result.Player1TotalScore)
+	fmt.Printf("%-4s scores: %d\n", strategy1.Name(), result.Strategy1Scores)
+	fmt.Printf("%-4s scores: %d\n", strategy2.Name(), result.Strategy2Scores)
 	fmt.Println("")
-	fmt.Printf("%s scores: %d\n", player2.Name(), result.Player2Scores)
-	fmt.Printf("%s total score: %d\n", player2.Name(), result.Player2TotalScore)
+	fmt.Printf("%-4s total score: %d\n", strategy1.Name(), result.Strategy1TotalScore)
+	fmt.Printf("%-4s total score: %d\n", strategy2.Name(), result.Strategy2TotalScore)
 	fmt.Println("")
-	if result.Player1TotalScore > result.Player2TotalScore {
-		fmt.Printf("%s WIN!!\n", player1.Name())
-	} else if result.Player1TotalScore < result.Player2TotalScore {
-		fmt.Printf("%s WIN!!\n", player2.Name())
+	if result.Strategy1TotalScore > result.Strategy2TotalScore {
+		fmt.Printf("%s WIN!!\n", strategy1.Name())
+	} else if result.Strategy1TotalScore < result.Strategy2TotalScore {
+		fmt.Printf("%s WIN!!\n", strategy2.Name())
 	} else {
 		fmt.Println("IT'S A DRAW")
 	}

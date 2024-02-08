@@ -8,18 +8,18 @@ import (
 
 func TestGameResult(t *testing.T) {
 	result := src.NewGameResult()
-	result.AddPlayer1Score(3)
-	result.AddPlayer2Score(1)
-	result.AddPlayer1Score(7)
-	result.AddPlayer2Score(5)
-	got := result.Player1TotalScore
+	result.AddStrategy1Score(3)
+	result.AddStrategy2Score(1)
+	result.AddStrategy1Score(7)
+	result.AddStrategy2Score(5)
+	got := result.Strategy1TotalScore
 	want := 10
 	if got != want {
-		t.Errorf("Unexpected player 1 total score. Got %d, want %d", got, want)
+		t.Errorf("Unexpected strategy 1 total score. Got %d, want %d", got, want)
 	}
-	got = result.Player2TotalScore
+	got = result.Strategy2TotalScore
 	want = 6
 	if got != want {
-		t.Errorf("Unexpected player 2 total score. Got %d, want %d", got, want)
+		t.Errorf("Unexpected strategy 2 total score. Got %d, want %d", got, want)
 	}
 }

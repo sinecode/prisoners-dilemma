@@ -9,7 +9,7 @@ import (
 
 func TestStrategies(t *testing.T) {
 	var tests = []struct {
-		player src.Player
+		strategy src.Strategy
 	}{
 		{&strategies.Random{}},
 		{&strategies.AlwaysCooperate{}},
@@ -18,6 +18,6 @@ func TestStrategies(t *testing.T) {
 		{&strategies.GrimTrigger{}},
 	}
 	for _, test := range tests {
-		testPlayer(t, test.player)
+		testStrategy(t, test.strategy)
 	}
 }

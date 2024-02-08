@@ -12,7 +12,7 @@ func (p *GrimTrigger) Name() string {
 	return "GRIM"
 }
 
-func (p *GrimTrigger) Strategy() string {
+func (p *GrimTrigger) Description() string {
 	return "Cooperates, until the opponent defects, and thereafter always defects."
 }
 

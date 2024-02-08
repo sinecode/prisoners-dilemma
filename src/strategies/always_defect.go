@@ -10,7 +10,7 @@ func (p *AlwaysDefect) Name() string {
 	return "AIID"
 }
 
-func (p *AlwaysDefect) Strategy() string {
+func (p *AlwaysDefect) Description() string {
 	return "Defects on every move."
 }
 

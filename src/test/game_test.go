@@ -10,7 +10,7 @@ import (
 func TestGame(t *testing.T) {
 	game := src.NewGame(&strategies.AlwaysDefect{}, &strategies.AlwaysCooperate{}, 10)
 	result := game.Start()
-	if result.Player1TotalScore < result.Player2TotalScore {
-		t.Errorf("Wrong total scores. Player1 got %d, player 2 got %d", result.Player1TotalScore, result.Player2TotalScore)
+	if result.Strategy1TotalScore < result.Strategy2TotalScore {
+		t.Errorf("Wrong total scores. Strategy1 got %d, strategy 2 got %d", result.Strategy1TotalScore, result.Strategy2TotalScore)
 	}
 }

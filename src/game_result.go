@@ -1,25 +1,25 @@
 package src
 
 type GameResult struct {
-	Player1Scores     []int
-	Player1TotalScore int
-	Player2Scores     []int
-	Player2TotalScore int
+	Strategy1Scores     []int
+	Strategy1TotalScore int
+	Strategy2Scores     []int
+	Strategy2TotalScore int
 }
 
 func NewGameResult() *GameResult {
 	return &GameResult{
-		Player1Scores: make([]int, 0),
-		Player2Scores: make([]int, 0),
+		Strategy1Scores: make([]int, 0),
+		Strategy2Scores: make([]int, 0),
 	}
 }
 
-func (gr *GameResult) AddPlayer1Score(score int) {
-	gr.Player1Scores = append(gr.Player1Scores, score)
-	gr.Player1TotalScore += score
+func (gr *GameResult) AddStrategy1Score(score int) {
+	gr.Strategy1Scores = append(gr.Strategy1Scores, score)
+	gr.Strategy1TotalScore += score
 }
 
-func (gr *GameResult) AddPlayer2Score(score int) {
-	gr.Player2Scores = append(gr.Player2Scores, score)
-	gr.Player2TotalScore += score
+func (gr *GameResult) AddStrategy2Score(score int) {
+	gr.Strategy2Scores = append(gr.Strategy2Scores, score)
+	gr.Strategy2TotalScore += score
 }

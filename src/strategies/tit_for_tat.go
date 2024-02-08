@@ -12,7 +12,7 @@ func (p *TitForTat) Name() string {
 	return "TFT"
 }
 
-func (p *TitForTat) Strategy() string {
+func (p *TitForTat) Description() string {
 	return "Cooperates on the first move, then copies the opponent’s last move."
 }
 

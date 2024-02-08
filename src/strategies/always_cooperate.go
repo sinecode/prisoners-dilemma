@@ -10,7 +10,7 @@ func (p *AlwaysCooperate) Name() string {
 	return "AIIC"
 }
 
-func (p *AlwaysCooperate) Strategy() string {
+func (p *AlwaysCooperate) Description() string {
 	return "Cooperates on every move."
 }
 
