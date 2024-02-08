@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	player1 := &strategies.AlwaysDefect{}
+	player1 := &strategies.GrimTrigger{}
 	player2 := &strategies.TitForTat{}
 	game := src.NewGame(player1, player2, 10)
 	result := game.Start()
