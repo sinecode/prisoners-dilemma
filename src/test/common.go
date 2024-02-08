@@ -14,14 +14,14 @@ func testPlayer(t *testing.T, player src.Player) {
 }
 
 func testGame(t *testing.T, player src.Player, turns int) {
-	in := make(chan src.Signal)
-	out := make(chan src.Signal)
+	in := make(chan src.Move)
+	out := make(chan src.Move)
 
 	go player.Play(in, out, turns)
 
 	for turn := 0; turn < turns; turn++ {
 		playerOut := <-out
-		var dummy src.Signal
+		var dummy src.Move
 		if turn%2 == 0 {
 			dummy = src.Defect
 		} else {

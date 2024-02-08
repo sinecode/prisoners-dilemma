@@ -8,8 +8,8 @@ import (
 )
 
 func main() {
-	player1 := &strategies.Random{}
-	player2 := &strategies.AlwaysCooperate{}
+	player1 := &strategies.AlwaysDefect{}
+	player2 := &strategies.TitForTat{}
 	game := src.NewGame(player1, player2, 10)
 	result := game.Start()
 	fmt.Printf("%s scores: %d\n", player1.Name(), result.Player1Scores)

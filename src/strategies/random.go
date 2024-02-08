@@ -14,7 +14,7 @@ func (p *Random) Name() string {
 	return "RAND"
 }
 
-func (p *Random) Play(in chan src.Signal, out chan src.Signal, turns int) {
+func (p *Random) Play(in chan src.Move, out chan src.Move, turns int) {
 	for i := 0; i < turns; i++ {
 		if rand.Intn(2) == 0 {
 			out <- src.Defect

@@ -9,8 +9,8 @@ type GameResult struct {
 
 func NewGameResult() *GameResult {
 	return &GameResult{
-		Player1Scores: make([]int, 1),
-		Player2Scores: make([]int, 1),
+		Player1Scores: make([]int, 0),
+		Player2Scores: make([]int, 0),
 	}
 }
 

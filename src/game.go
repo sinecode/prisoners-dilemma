@@ -16,12 +16,12 @@ func NewGame(player1 Player, player2 Player, turns int) *Game {
 
 func (game *Game) Start() *GameResult {
 	result := NewGameResult()
-	player1In := make(chan Signal)
-	player1Out := make(chan Signal)
+	player1In := make(chan Move)
+	player1Out := make(chan Move)
 	go game.Player1.Play(player1In, player1Out, game.Turns)
 
-	player2In := make(chan Signal)
-	player2Out := make(chan Signal)
+	player2In := make(chan Move)
+	player2Out := make(chan Move)
 	go game.Player2.Play(player2In, player2Out, game.Turns)
 
 	for turn := 0; turn < game.Turns; turn++ {

@@ -12,7 +12,7 @@ func (p *AlwaysCooperate) Name() string {
 	return "AIIC"
 }
 
-func (p *AlwaysCooperate) Play(in chan src.Signal, out chan src.Signal, turns int) {
+func (p *AlwaysCooperate) Play(in chan src.Move, out chan src.Move, turns int) {
 	for i := 0; i < turns; i++ {
 		out <- src.Cooperate
 		<-in

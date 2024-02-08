@@ -12,7 +12,7 @@ func (p *AlwaysDefect) Name() string {
 	return "AIID"
 }
 
-func (p *AlwaysDefect) Play(in chan src.Signal, out chan src.Signal, turns int) {
+func (p *AlwaysDefect) Play(in chan src.Move, out chan src.Move, turns int) {
 	for i := 0; i < turns; i++ {
 		out <- src.Defect
 		<-in
