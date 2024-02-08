@@ -6,12 +6,14 @@ import (
 	"github.com/sinecode/prisoners-dilemma/src"
 )
 
-type Random struct {
-	// Nothing. It really plays random
-}
+type Random struct{}
 
 func (p *Random) Name() string {
 	return "RAND"
+}
+
+func (p *Random) Strategy() string {
+	return "Makes a random move."
 }
 
 func (p *Random) Play(in chan src.Move, out chan src.Move, turns int) {
@@ -21,7 +23,6 @@ func (p *Random) Play(in chan src.Move, out chan src.Move, turns int) {
 		} else {
 			out <- src.Cooperate
 		}
-		// Don't do nothing. He plays random
 		<-in
 	}
 }

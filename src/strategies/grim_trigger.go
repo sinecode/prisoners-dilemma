@@ -4,13 +4,16 @@ import (
 	"github.com/sinecode/prisoners-dilemma/src"
 )
 
-// Cooperates, until the opponent defects, and thereafter always defects.
 type GrimTrigger struct {
 	hasOpponentDefected bool
 }
 
 func (p *GrimTrigger) Name() string {
 	return "GRIM"
+}
+
+func (p *GrimTrigger) Strategy() string {
+	return "Cooperates, until the opponent defects, and thereafter always defects."
 }
 
 func (p *GrimTrigger) Play(in chan src.Move, out chan src.Move, turns int) {

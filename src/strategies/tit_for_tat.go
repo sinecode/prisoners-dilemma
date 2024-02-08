@@ -4,13 +4,16 @@ import (
 	"github.com/sinecode/prisoners-dilemma/src"
 )
 
-// Cooperate on the first move, then copy the opponent move
 type TitForTat struct {
 	lastOpponentMove src.Move
 }
 
 func (p *TitForTat) Name() string {
 	return "TFT"
+}
+
+func (p *TitForTat) Strategy() string {
+	return "Cooperates on the first move, then copies the opponent’s last move."
 }
 
 func (p *TitForTat) Play(in chan src.Move, out chan src.Move, turns int) {

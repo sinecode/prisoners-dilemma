@@ -4,12 +4,14 @@ import (
 	"github.com/sinecode/prisoners-dilemma/src"
 )
 
-type AlwaysDefect struct {
-	// Nothing. It always defects
-}
+type AlwaysDefect struct{}
 
 func (p *AlwaysDefect) Name() string {
 	return "AIID"
+}
+
+func (p *AlwaysDefect) Strategy() string {
+	return "Defects on every move."
 }
 
 func (p *AlwaysDefect) Play(in chan src.Move, out chan src.Move, turns int) {
