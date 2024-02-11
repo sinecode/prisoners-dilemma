@@ -20,22 +20,39 @@ var allStrategies = []src.Strategy{
 	&strategies.FirmButFair{},
 }
 
+func main() {
+	if len(os.Args) < 2 || os.Args[1] == "-h" || os.Args[1] == "--help" {
+		printUsage()
+		return
+	}
+
+	if os.Args[1] == "game" {
+		playGame()
+	} else if os.Args[1] == "tournament" {
+		playtournament()
+	} else {
+		printUsage()
+	}
+}
+
 func printUsage() {
-	fmt.Println("Usage: prisoners game <turns> <strategy1> <strategy2>")
+	fmt.Println("Usage:")
+	fmt.Println("  * prisoners game <turns> <strategy1> <strategy2>")
+	fmt.Println("  * prisoners tournament <turns>")
 	fmt.Println("")
-	fmt.Println("Choose from these strategies (case insensitive):")
+	fmt.Println("For a game, choose from these strategies (case insensitive):")
 	for _, strategy := range allStrategies {
 		fmt.Printf("  * %-6s - %s\n", strategy.Name(), strategy.Description())
 	}
 }
 
-func main() {
-	argsIdx := 1
-	if len(os.Args) != 5 || os.Args[argsIdx] == "-h" || os.Args[argsIdx] == "--help" {
+func playGame() {
+	if len(os.Args) != 5 {
 		printUsage()
 		return
 	}
-	argsIdx++
+
+	argsIdx := 2
 
 	turnsArg := os.Args[argsIdx]
 	turns, err := strconv.Atoi(turnsArg)
@@ -89,5 +106,28 @@ func main() {
 		fmt.Printf("%s WIN!!\n", strategy2.Name())
 	} else {
 		fmt.Println("IT'S A DRAW")
+	}
+}
+
+func playtournament() {
+	if len(os.Args) != 3 {
+		printUsage()
+		return
+	}
+
+	turnsArg := os.Args[2]
+	turns, err := strconv.Atoi(turnsArg)
+	if err != nil || turns <= 0 {
+		fmt.Println("<turns> must be a positive integer")
+		return
+	}
+
+	tournament := *src.NewTournament(allStrategies, turns)
+	result := tournament.Start()
+	sortedStrategies, sortedScores := result.ReadableRanking()
+	fmt.Println("STRATEGY  SCORE")
+	fmt.Println("")
+	for i := 0; i < len(sortedStrategies); i++ {
+		fmt.Printf("%-9s %d\n", sortedStrategies[i], sortedScores[i])
 	}
 }
