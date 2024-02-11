@@ -26,15 +26,15 @@ func (p *Pavlov) Play(in chan src.Move, out chan src.Move, turns int) {
 		}
 		out <- myMove
 		opponentMove := <-in
-		if opponentMove == src.Cooperate {
+		myScore, _ := src.ComputeScores(myMove, opponentMove)
+		if myScore == src.REWARD_PAYOFF || myScore == src.TEMPTATION_PAYOFF {
 			p.nextMove = myMove
-		} else if myMove == src.Cooperate {
-			p.nextMove = src.Defect
-		} else if myMove == src.Defect {
-			p.nextMove = src.Cooperate
 		} else {
-			panic("Invalid move")
+			if myMove == src.Defect {
+				p.nextMove = src.Cooperate
+			} else {
+				p.nextMove = src.Defect
+			}
 		}
-
 	}
 }

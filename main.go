@@ -17,6 +17,7 @@ var allStrategies = []src.Strategy{
 	&strategies.TitForTat{},
 	&strategies.GrimTrigger{},
 	&strategies.Pavlov{},
+	&strategies.FirmButFair{},
 }
 
 func printUsage() {
